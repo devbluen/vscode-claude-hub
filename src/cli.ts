@@ -112,7 +112,7 @@ export async function findAllCli(): Promise<CliInfo[]> {
       out.push({ path: p, source });
     }
   };
-  const configured = vscode.workspace.getConfiguration('claudeSwitch').get<string>('cliPath', '').trim();
+  const configured = vscode.workspace.getConfiguration('claudeHub').get<string>('cliPath', '').trim();
   if (configured) push(configured, 'setting');
   (await onPath()).forEach((p) => push(p, 'path'));
   knownLocations().forEach((l) => push(l.path, l.source));

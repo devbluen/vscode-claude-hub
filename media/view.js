@@ -77,7 +77,7 @@
     if (!state.showUsage) return '';
     if (p.needsLogin) {
       return `<div class="note warn">${icons.alert}<span>${esc(S.loginExpired)}</span>
-        <button class="link" data-action="command" data-command="claudeSwitch.addAccount">${esc(S.addAgain)}</button></div>`;
+        <button class="link" data-action="command" data-command="claudeHub.addAccount">${esc(S.addAgain)}</button></div>`;
     }
     if (!p.windows.length) {
       if (p.status === 'loading') {
@@ -142,11 +142,11 @@
 
     if (state.needsReload) {
       html += `<div class="banner reload" data-key="reload">${icons.reload}<div class="txt"><b>${esc(S.reloadTitle)}</b><span>${esc(S.reloadText)}</span></div>
-        <button class="btn primary" data-action="command" data-command="claudeSwitch.reloadWindow">${esc(S.reload)}</button></div>`;
+        <button class="btn primary" data-action="command" data-command="claudeHub.reloadWindow">${esc(S.reload)}</button></div>`;
     }
     if (state.unsaved) {
       html += `<div class="banner unsaved" data-key="unsaved">${icons.info}<div class="txt"><b>${esc(S.unsavedTitle)}</b><span>${esc(state.unsaved.email)}</span></div>
-        <button class="btn primary" data-action="command" data-command="claudeSwitch.saveCurrent">${esc(S.save)}</button></div>`;
+        <button class="btn primary" data-action="command" data-command="claudeHub.saveCurrent">${esc(S.save)}</button></div>`;
     }
 
     if (!total) {
@@ -154,17 +154,17 @@
         <h2>${esc(S.emptyTitle)}</h2>
         <p>${esc(S.emptyText)}</p>
         <div class="btns">
-          ${state.unsaved ? `<button class="btn primary" data-action="command" data-command="claudeSwitch.saveCurrent">${icons.save}${esc(S.saveCurrent)}</button>` : ''}
-          <button class="btn ${state.unsaved ? 'ghost' : 'primary'}" data-action="command" data-command="claudeSwitch.addAccount">${icons.userPlus}${esc(S.addAccount)}</button>
-          <button class="btn ghost" data-action="command" data-command="claudeSwitch.doctor">${icons.stethoscope}${esc(S.diagnostics)}</button>
+          ${state.unsaved ? `<button class="btn primary" data-action="command" data-command="claudeHub.saveCurrent">${icons.save}${esc(S.saveCurrent)}</button>` : ''}
+          <button class="btn ${state.unsaved ? 'ghost' : 'primary'}" data-action="command" data-command="claudeHub.addAccount">${icons.userPlus}${esc(S.addAccount)}</button>
+          <button class="btn ghost" data-action="command" data-command="claudeHub.doctor">${icons.stethoscope}${esc(S.diagnostics)}</button>
         </div>
       </div>`;
     } else {
       html += `<div class="list" data-key="list">${state.profiles.map(cardHtml).join('')}</div>`;
       html += `<div class="footer" data-key="footer">
-        <a data-action="command" data-command="claudeSwitch.openAnalytics">${icons.chart}${esc(S.analytics)}</a>
-        <a data-action="command" data-command="claudeSwitch.doctor">${icons.stethoscope}${esc(S.diagnostics)}</a>
-        ${state.canUndo ? `<a data-action="command" data-command="claudeSwitch.undo">${icons.reload}${esc(S.undo)}</a>` : ''}
+        <a data-action="command" data-command="claudeHub.openAnalytics">${icons.chart}${esc(S.analytics)}</a>
+        <a data-action="command" data-command="claudeHub.doctor">${icons.stethoscope}${esc(S.diagnostics)}</a>
+        ${state.canUndo ? `<a data-action="command" data-command="claudeHub.undo">${icons.reload}${esc(S.undo)}</a>` : ''}
       </div>
       <div class="vault" data-key="vault">${icons.lock}<span>${esc(S.vault)}</span></div>`;
     }

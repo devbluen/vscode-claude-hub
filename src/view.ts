@@ -103,7 +103,7 @@ export class AccountsViewProvider implements vscode.WebviewViewProvider {
           await m.refreshUsage(msg.id);
           break;
         case 'command':
-          if (typeof msg.command === 'string' && msg.command.startsWith('claudeSwitch.')) {
+          if (typeof msg.command === 'string' && msg.command.startsWith('claudeHub.')) {
             await vscode.commands.executeCommand(msg.command);
           }
           break;
@@ -131,7 +131,7 @@ export class AccountsViewProvider implements vscode.WebviewViewProvider {
         canUndo: await m.canUndo(),
         needsReload: m.needsReload,
         colors: COLORS,
-        showUsage: vscode.workspace.getConfiguration('claudeSwitch').get<boolean>('showUsage', true),
+        showUsage: vscode.workspace.getConfiguration('claudeHub').get<boolean>('showUsage', true),
         locale: vscode.env.language,
         strings: webviewStrings(),
       },

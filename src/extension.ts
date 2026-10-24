@@ -10,12 +10,12 @@ const t = vscode.l10n.t;
 
 export function activate(context: vscode.ExtensionContext) {
   const manager = new AccountManager(context);
-  const statusBar = vscode.window.createStatusBarItem('claudeSwitch.status', vscode.StatusBarAlignment.Right, 100);
-  statusBar.name = 'Claude Switch';
-  statusBar.command = 'claudeSwitch.switch';
+  const statusBar = vscode.window.createStatusBarItem('claudeHub.status', vscode.StatusBarAlignment.Right, 100);
+  statusBar.name = 'Claude Hub';
+  statusBar.command = 'claudeHub.switch';
 
   const updateStatusBar = () => {
-    if (!vscode.workspace.getConfiguration('claudeSwitch').get<boolean>('statusBar', true)) {
+    if (!vscode.workspace.getConfiguration('claudeHub').get<boolean>('statusBar', true)) {
       statusBar.hide();
       return;
     }
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
     statusBar.backgroundColor =
       max >= 100
         ? new vscode.ThemeColor('statusBarItem.errorBackground')
-        : max >= vscode.workspace.getConfiguration('claudeSwitch').get<number>('warnAtPercent', 90)
+        : max >= vscode.workspace.getConfiguration('claudeHub').get<number>('warnAtPercent', 90)
           ? new vscode.ThemeColor('statusBarItem.warningBackground')
           : undefined;
 
@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
   const provider = new AccountsViewProvider(context.extensionUri, manager);
 
   const usageTimer = () => {
-    const minutes = Math.max(1, vscode.workspace.getConfiguration('claudeSwitch').get<number>('usageRefreshMinutes', 5));
+    const minutes = Math.max(1, vscode.workspace.getConfiguration('claudeHub').get<number>('usageRefreshMinutes', 5));
     return setInterval(() => void manager.refreshUsage(), minutes * 60_000);
   };
   let timer = usageTimer();
@@ -61,22 +61,22 @@ export function activate(context: vscode.ExtensionContext) {
     manager,
     statusBar,
     manager.onDidChange(updateStatusBar),
-    vscode.window.registerWebviewViewProvider('claudeSwitch.accounts', provider, {
+    vscode.window.registerWebviewViewProvider('claudeHub.accounts', provider, {
       webviewOptions: { retainContextWhenHidden: true },
     }),
-    vscode.commands.registerCommand('claudeSwitch.switch', () => quickSwitch(manager)),
-    vscode.commands.registerCommand('claudeSwitch.addAccount', () => addAccountIsolated(manager, context)),
-    vscode.commands.registerCommand('claudeSwitch.saveCurrent', () => manager.saveCurrent()),
-    vscode.commands.registerCommand('claudeSwitch.undo', () => manager.undo()),
-    vscode.commands.registerCommand('claudeSwitch.refreshUsage', () => manager.refreshUsage()),
-    vscode.commands.registerCommand('claudeSwitch.suggest', () => suggest(manager)),
-    vscode.commands.registerCommand('claudeSwitch.openAnalytics', () => AnalyticsPanel.show(context, manager)),
-    vscode.commands.registerCommand('claudeSwitch.doctor', () => DoctorPanel.show(context, manager)),
-    vscode.commands.registerCommand('claudeSwitch.reloadWindow', () =>
+    vscode.commands.registerCommand('claudeHub.switch', () => quickSwitch(manager)),
+    vscode.commands.registerCommand('claudeHub.addAccount', () => addAccountIsolated(manager, context)),
+    vscode.commands.registerCommand('claudeHub.saveCurrent', () => manager.saveCurrent()),
+    vscode.commands.registerCommand('claudeHub.undo', () => manager.undo()),
+    vscode.commands.registerCommand('claudeHub.refreshUsage', () => manager.refreshUsage()),
+    vscode.commands.registerCommand('claudeHub.suggest', () => suggest(manager)),
+    vscode.commands.registerCommand('claudeHub.openAnalytics', () => AnalyticsPanel.show(context, manager)),
+    vscode.commands.registerCommand('claudeHub.doctor', () => DoctorPanel.show(context, manager)),
+    vscode.commands.registerCommand('claudeHub.reloadWindow', () =>
       vscode.commands.executeCommand('workbench.action.reloadWindow'),
     ),
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('claudeSwitch')) {
+      if (e.affectsConfiguration('claudeHub')) {
         clearInterval(timer);
         timer = usageTimer();
         updateStatusBar();
@@ -106,14 +106,14 @@ async function quickSwitch(manager: AccountManager) {
   });
   items.push(
     { label: '', kind: vscode.QuickPickItemKind.Separator },
-    { label: `$(sparkle) ${t('Suggest the best account')}`, command: 'claudeSwitch.suggest' },
-    { label: `$(person-add) ${t('Add account…')}`, command: 'claudeSwitch.addAccount' },
+    { label: `$(sparkle) ${t('Suggest the best account')}`, command: 'claudeHub.suggest' },
+    { label: `$(person-add) ${t('Add account…')}`, command: 'claudeHub.addAccount' },
   );
   if (manager.unsaved) {
     items.push({
       label: `$(save) ${t('Save current account')}`,
       description: manager.unsaved.oauthAccount?.emailAddress,
-      command: 'claudeSwitch.saveCurrent',
+      command: 'claudeHub.saveCurrent',
     });
   }
   const pick = await vscode.window.showQuickPick(items, { title: t('Switch Claude account'), placeHolder: t('Choose an account') });

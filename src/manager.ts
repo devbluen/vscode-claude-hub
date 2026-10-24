@@ -41,10 +41,10 @@ export interface UsageInfo {
 
 export const COLORS = ['#E07A5F', '#8B5CF6', '#3B82F6', '#14B8A6', '#22C55E', '#F59E0B', '#EC4899', '#64748B'];
 
-const PROFILES_KEY = 'claudeSwitch.profiles';
-const USAGE_KEY = 'claudeSwitch.usage';
-const SECRET_PREFIX = 'claudeSwitch.login.';
-const UNDO_KEY = 'claudeSwitch.undo';
+const PROFILES_KEY = 'claudeHub.profiles';
+const USAGE_KEY = 'claudeHub.usage';
+const SECRET_PREFIX = 'claudeHub.login.';
+const UNDO_KEY = 'claudeHub.undo';
 /** Refresh a resting token this long before it expires. */
 const EXPIRY_MARGIN_MS = 2 * 60_000;
 
@@ -299,7 +299,7 @@ export class AccountManager implements vscode.Disposable {
   }
 
   private async afterSwitch(message: string) {
-    const mode = vscode.workspace.getConfiguration('claudeSwitch').get<string>('afterSwitch', 'ask');
+    const mode = vscode.workspace.getConfiguration('claudeHub').get<string>('afterSwitch', 'ask');
     if (mode === 'reload') {
       await vscode.commands.executeCommand('workbench.action.reloadWindow');
       return;
@@ -403,7 +403,7 @@ export class AccountManager implements vscode.Disposable {
 
   /** Updates usage of one account (or all). Runs are not stacked. */
   refreshUsage(onlyId?: string): Promise<void> {
-    if (!vscode.workspace.getConfiguration('claudeSwitch').get<boolean>('showUsage', true)) {
+    if (!vscode.workspace.getConfiguration('claudeHub').get<boolean>('showUsage', true)) {
       return Promise.resolve();
     }
     if (!onlyId && this.usageRun) {
@@ -430,7 +430,7 @@ export class AccountManager implements vscode.Disposable {
       this.changed.fire();
     };
     const isActive = p.id === this.activeId && !!current;
-    const refreshInactive = vscode.workspace.getConfiguration('claudeSwitch').get<boolean>('refreshInactiveTokens', true);
+    const refreshInactive = vscode.workspace.getConfiguration('claudeHub').get<boolean>('refreshInactiveTokens', true);
 
     let token: string | undefined;
     try {

@@ -26,7 +26,7 @@ export class LimitNotifier implements vscode.Disposable {
   constructor(private readonly host: NotifierHost) {}
 
   private get config() {
-    return vscode.workspace.getConfiguration('claudeSwitch');
+    return vscode.workspace.getConfiguration('claudeHub');
   }
 
   onSnapshot(id: string, prev: UsageSnapshot | undefined, next: UsageSnapshot) {

@@ -205,10 +205,10 @@ iframe{border:0;flex:1;width:100%;display:block}
 <div class="center">my-project — Visual Studio Code</div><div style="width:200px"></div></div>
 <div class="main">
 <div class="act">${['files', 'search', 'git', 'run', 'ext'].map((k) => `<div>${icon(ACTIVITY[k])}</div>`).join('')}<div class="on">${icon(ACTIVITY.claude)}</div></div>
-<div class="side"><div class="h">CLAUDE SWITCH</div>
+<div class="side"><div class="h">CLAUDE HUB</div>
 <div class="vh">${icon('<path d="m8 10 4 4 4-4"/>', 16)}${pt ? 'CONTAS' : 'ACCOUNTS'}<span class="ic">${icon('<circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0 1 13-3.5M19 14v6M16 17h6"/>', 16)}${icon('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', 16)}${icon('<path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/>', 16)}</span></div>
 <iframe src="${pathToFileURL(sidebarFile).href}"></iframe></div>
-<div class="ed"><div class="tabs"><div class="tab"><img src="${media('icon.png')}">Claude Switch · ${pt ? 'Métricas' : 'Analytics'}<span style="opacity:.6;margin-left:6px">×</span></div></div>
+<div class="ed"><div class="tabs"><div class="tab"><img src="${media('icon.png')}">Claude Hub · ${pt ? 'Métricas' : 'Analytics'}<span style="opacity:.6;margin-left:6px">×</span></div></div>
 <iframe src="${pathToFileURL(analyticsFile).href}"></iframe></div>
 </div>
 <div class="status">${icon('<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 8v8M18 10c0 4-6 3-10 6"/>', 14)} main
@@ -234,7 +234,7 @@ body{display:grid;place-items:center;background:
 .vh{height:22px;display:flex;align-items:center;padding:0 8px 0 4px;font-size:11px;font-weight:700}
 .vh .ic{margin-left:auto;display:flex;gap:6px;opacity:.8}
 iframe{border:0;flex:1;width:100%;display:block}
-</style></head><body><div class="panel"><div class="h">CLAUDE SWITCH</div>
+</style></head><body><div class="panel"><div class="h">CLAUDE HUB</div>
 <div class="vh">${icon('<path d="m8 10 4 4 4-4"/>', 16)}${pt ? 'CONTAS' : 'ACCOUNTS'}<span class="ic">${icon('<circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0 1 13-3.5M19 14v6M16 17h6"/>', 16)}${icon('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>', 16)}${icon('<path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M4 4v4h4M20 20v-4h-4"/>', 16)}</span></div>
 <iframe src="${pathToFileURL(sidebarFile).href}"></iframe></div></body></html>`;
 }

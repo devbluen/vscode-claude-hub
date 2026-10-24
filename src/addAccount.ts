@@ -30,7 +30,7 @@ export async function addAccountIsolated(manager: AccountManager, context: vscod
       manual,
     );
     if (choice === doctor) {
-      await vscode.commands.executeCommand('claudeSwitch.doctor');
+      await vscode.commands.executeCommand('claudeHub.doctor');
     } else if (choice === manual) {
       await addAccountManual(manager);
     }

@@ -36,119 +36,119 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "claudeSwitch",
-          "title": "Claude Switch",
+          "id": "claudeHub",
+          "title": "Claude Hub",
           "icon": "media/activity.svg"
         }
       ]
     },
     "views": {
-      "claudeSwitch": [
+      "claudeHub": [
         {
           "type": "webview",
-          "id": "claudeSwitch.accounts",
+          "id": "claudeHub.accounts",
           "name": "%view.accounts%"
         }
       ]
     },
     "commands": [
       {
-        "command": "claudeSwitch.switch",
+        "command": "claudeHub.switch",
         "title": "%command.switch%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(arrow-swap)"
       },
       {
-        "command": "claudeSwitch.addAccount",
+        "command": "claudeHub.addAccount",
         "title": "%command.addAccount%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(person-add)"
       },
       {
-        "command": "claudeSwitch.saveCurrent",
+        "command": "claudeHub.saveCurrent",
         "title": "%command.saveCurrent%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(save)"
       },
       {
-        "command": "claudeSwitch.undo",
+        "command": "claudeHub.undo",
         "title": "%command.undo%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(discard)"
       },
       {
-        "command": "claudeSwitch.refreshUsage",
+        "command": "claudeHub.refreshUsage",
         "title": "%command.refreshUsage%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(refresh)"
       },
       {
-        "command": "claudeSwitch.suggest",
+        "command": "claudeHub.suggest",
         "title": "%command.suggest%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(sparkle)"
       },
       {
-        "command": "claudeSwitch.openAnalytics",
+        "command": "claudeHub.openAnalytics",
         "title": "%command.openAnalytics%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(graph)"
       },
       {
-        "command": "claudeSwitch.doctor",
+        "command": "claudeHub.doctor",
         "title": "%command.doctor%",
-        "category": "Claude Switch",
+        "category": "Claude Hub",
         "icon": "$(pulse)"
       },
       {
-        "command": "claudeSwitch.reloadWindow",
+        "command": "claudeHub.reloadWindow",
         "title": "%command.reloadWindow%",
-        "category": "Claude Switch"
+        "category": "Claude Hub"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "claudeSwitch.addAccount",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.addAccount",
+          "when": "view == claudeHub.accounts",
           "group": "navigation@1"
         },
         {
-          "command": "claudeSwitch.openAnalytics",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.openAnalytics",
+          "when": "view == claudeHub.accounts",
           "group": "navigation@2"
         },
         {
-          "command": "claudeSwitch.refreshUsage",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.refreshUsage",
+          "when": "view == claudeHub.accounts",
           "group": "navigation@3"
         },
         {
-          "command": "claudeSwitch.suggest",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.suggest",
+          "when": "view == claudeHub.accounts",
           "group": "more@1"
         },
         {
-          "command": "claudeSwitch.saveCurrent",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.saveCurrent",
+          "when": "view == claudeHub.accounts",
           "group": "more@2"
         },
         {
-          "command": "claudeSwitch.undo",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.undo",
+          "when": "view == claudeHub.accounts",
           "group": "more@3"
         },
         {
-          "command": "claudeSwitch.doctor",
-          "when": "view == claudeSwitch.accounts",
+          "command": "claudeHub.doctor",
+          "when": "view == claudeHub.accounts",
           "group": "more@4"
         }
       ]
     },
     "configuration": {
-      "title": "Claude Switch",
+      "title": "Claude Hub",
       "properties": {
-        "claudeSwitch.afterSwitch": {
+        "claudeHub.afterSwitch": {
           "type": "string",
           "enum": [
             "ask",
@@ -163,40 +163,40 @@
           "default": "ask",
           "description": "%config.afterSwitch%"
         },
-        "claudeSwitch.showUsage": {
+        "claudeHub.showUsage": {
           "type": "boolean",
           "default": true,
           "description": "%config.showUsage%"
         },
-        "claudeSwitch.usageRefreshMinutes": {
+        "claudeHub.usageRefreshMinutes": {
           "type": "number",
           "default": 5,
           "minimum": 1,
           "description": "%config.usageRefreshMinutes%"
         },
-        "claudeSwitch.refreshInactiveTokens": {
+        "claudeHub.refreshInactiveTokens": {
           "type": "boolean",
           "default": true,
           "description": "%config.refreshInactiveTokens%"
         },
-        "claudeSwitch.warnAtPercent": {
+        "claudeHub.warnAtPercent": {
           "type": "number",
           "default": 90,
           "minimum": 0,
           "maximum": 100,
           "description": "%config.warnAtPercent%"
         },
-        "claudeSwitch.notifyWhenAvailable": {
+        "claudeHub.notifyWhenAvailable": {
           "type": "boolean",
           "default": true,
           "description": "%config.notifyWhenAvailable%"
         },
-        "claudeSwitch.statusBar": {
+        "claudeHub.statusBar": {
           "type": "boolean",
           "default": true,
           "description": "%config.statusBar%"
         },
-        "claudeSwitch.cliPath": {
+        "claudeHub.cliPath": {
           "type": "string",
           "default": "",
           "description": "%config.cliPath%"

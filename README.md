@@ -1,10 +1,10 @@
-# Claude Switch
+# Claude Hub
 
 **English** · [Português](README.pt-BR.md)
 
 Switch between Claude Code accounts in VS Code with one click — no signing out and back in.
 
-![Claude Switch: accounts panel and usage analytics](docs/screenshots/en/hero.png)
+![Claude Hub: accounts panel and usage analytics](docs/screenshots/en/hero.png)
 
 - **Accounts panel** in the sidebar: one card per account with color, plan (Pro / Max) and every usage limit — 5-hour session, weekly, and per-model limits such as **Fable** or Opus.
 - **Status bar** with the active account and its 5-hour usage (turns yellow/red near the limit). Click to switch.
@@ -45,11 +45,11 @@ Switching means writing the saved data of another account into those keys. Every
 
 Saved logins live in the VS Code **SecretStorage**, encrypted by the operating system (Credential Manager on Windows, Keychain on macOS, libsecret on Linux) — never in plain text.
 
-While an account is active, the extension follows Claude Code's files and keeps the tokens it renews, so the saved copy never goes stale. Accounts that are **not** active get their access token renewed by the extension (only those — the active one always belongs to Claude Code), so their usage stays visible. Turn this off with `claudeSwitch.refreshInactiveTokens`.
+While an account is active, the extension follows Claude Code's files and keeps the tokens it renews, so the saved copy never goes stale. Accounts that are **not** active get their access token renewed by the extension (only those — the active one always belongs to Claude Code), so their usage stays visible. Turn this off with `claudeHub.refreshInactiveTokens`.
 
 ## Getting started
 
-1. Open the **Claude Switch** panel in the activity bar.
+1. Open the **Claude Hub** panel in the activity bar.
 2. Click **Save** to store the account already signed in.
 3. Click **Add account** (person icon at the top of the panel). A terminal runs `claude auth login`; sign in with the other account in the browser (if the browser is signed in to the current account, switch there before authorizing).
 4. Use the **Use** button on any card and reload the window.
@@ -60,7 +60,7 @@ While an account is active, the extension follows Claude Code's files and keeps 
 
 ## Troubleshooting
 
-Run **Claude Switch: Run diagnostics** (Command Palette, or the panel's `…` menu). It checks the CLI, the PATH, your login, the usage API and conflicting extensions, and offers a button to fix each problem. The step-by-step guide below is also inside it.
+Run **Claude Hub: Run diagnostics** (Command Palette, or the panel's `…` menu). It checks the CLI, the PATH, your login, the usage API and conflicting extensions, and offers a button to fix each problem. The step-by-step guide below is also inside it.
 
 ### "claude" is not recognized / the CLI is not found
 
@@ -86,7 +86,7 @@ The extension does **not** need `claude` on the PATH: it looks in the PATH store
 3. If still not found: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc` (or `~/.bashrc`)
 4. Reopen VS Code and the terminals, then `which claude`
 
-You can also point to the executable with the `claudeSwitch.cliPath` setting, or *Locate executable…* in Diagnostics.
+You can also point to the executable with the `claudeHub.cliPath` setting, or *Locate executable…* in Diagnostics.
 
 ### Other problems
 
@@ -102,14 +102,14 @@ You can also point to the executable with the `claudeSwitch.cliPath` setting, or
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `claudeSwitch.afterSwitch` | `ask` | `ask`, `reload` or `nothing` after switching |
-| `claudeSwitch.showUsage` | `true` | Fetch and show usage limits |
-| `claudeSwitch.usageRefreshMinutes` | `5` | How often usage is refreshed |
-| `claudeSwitch.refreshInactiveTokens` | `true` | Renew tokens of inactive accounts to keep their usage current |
-| `claudeSwitch.warnAtPercent` | `90` | Warn when the active account reaches this % of a limit (0 = off) |
-| `claudeSwitch.notifyWhenAvailable` | `true` | Notify when a used-up limit is available again |
-| `claudeSwitch.statusBar` | `true` | Show the account in the status bar |
-| `claudeSwitch.cliPath` | empty | Path of `claude`. Empty = automatic detection |
+| `claudeHub.afterSwitch` | `ask` | `ask`, `reload` or `nothing` after switching |
+| `claudeHub.showUsage` | `true` | Fetch and show usage limits |
+| `claudeHub.usageRefreshMinutes` | `5` | How often usage is refreshed |
+| `claudeHub.refreshInactiveTokens` | `true` | Renew tokens of inactive accounts to keep their usage current |
+| `claudeHub.warnAtPercent` | `90` | Warn when the active account reaches this % of a limit (0 = off) |
+| `claudeHub.notifyWhenAvailable` | `true` | Notify when a used-up limit is available again |
+| `claudeHub.statusBar` | `true` | Show the account in the status bar |
+| `claudeHub.cliPath` | empty | Path of `claude`. Empty = automatic detection |
 
 ## Development
 

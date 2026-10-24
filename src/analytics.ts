@@ -23,8 +23,8 @@ export class AnalyticsPanel {
     private readonly manager: AccountManager,
   ) {
     this.panel = vscode.window.createWebviewPanel(
-      'claudeSwitch.analytics',
-      vscode.l10n.t('Claude Switch · Analytics'),
+      'claudeHub.analytics',
+      vscode.l10n.t('Claude Hub · Analytics'),
       vscode.ViewColumn.Active,
       { enableScripts: true, retainContextWhenHidden: true, localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'media')] },
     );

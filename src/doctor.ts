@@ -264,7 +264,7 @@ export class DoctorPanel {
     private readonly manager: AccountManager,
     openGuide: boolean,
   ) {
-    this.panel = vscode.window.createWebviewPanel('claudeSwitch.doctor', t('Claude Switch · Diagnostics'), vscode.ViewColumn.Active, {
+    this.panel = vscode.window.createWebviewPanel('claudeHub.doctor', t('Claude Hub · Diagnostics'), vscode.ViewColumn.Active, {
       enableScripts: true,
       localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'media')],
     });
@@ -288,7 +288,7 @@ export class DoctorPanel {
         await this.manager.saveCurrent();
         return this.render();
       case 'addAccount':
-        return vscode.commands.executeCommand('claudeSwitch.addAccount');
+        return vscode.commands.executeCommand('claudeHub.addAccount');
       case 'showExtension':
         return vscode.commands.executeCommand('workbench.extensions.search', `@id:${arg}`);
       case 'pickCli':
@@ -314,7 +314,7 @@ export class DoctorPanel {
       vscode.window.showErrorMessage(t('This file did not answer to "--version". Is it the Claude Code CLI?'));
       return;
     }
-    await vscode.workspace.getConfiguration('claudeSwitch').update('cliPath', file, vscode.ConfigurationTarget.Global);
+    await vscode.workspace.getConfiguration('claudeHub').update('cliPath', file, vscode.ConfigurationTarget.Global);
     await this.render();
   }
 
@@ -322,7 +322,7 @@ export class DoctorPanel {
     const items = (await findAllCli()).map((c) => ({ label: c.path, description: sourceLabel(c.source) }));
     const pick = await vscode.window.showQuickPick(items, { title: t('Which claude executable should be used?') });
     if (pick) {
-      await vscode.workspace.getConfiguration('claudeSwitch').update('cliPath', pick.label, vscode.ConfigurationTarget.Global);
+      await vscode.workspace.getConfiguration('claudeHub').update('cliPath', pick.label, vscode.ConfigurationTarget.Global);
       await this.render();
     }
   }
@@ -381,7 +381,7 @@ export class DoctorPanel {
     const problems = checks.filter((c) => c.status === 'error' || c.status === 'warn').length;
     const summary = problems
       ? `<div class="summary warn">${svg(ICONS.warn)}<div><b>${escapeHtml(t('{0} item(s) need attention', problems))}</b><span>${escapeHtml(t('Use the buttons next to each item to fix it.'))}</span></div></div>`
-      : `<div class="summary ok">${svg(ICONS.ok)}<div><b>${escapeHtml(t('Everything looks good'))}</b><span>${escapeHtml(t('Claude Switch is ready to use.'))}</span></div></div>`;
+      : `<div class="summary ok">${svg(ICONS.ok)}<div><b>${escapeHtml(t('Everything looks good'))}</b><span>${escapeHtml(t('Claude Hub is ready to use.'))}</span></div></div>`;
     const list = checks
       .map(
         (c) => `<div class="check ${c.status}">
@@ -416,7 +416,7 @@ export class DoctorPanel {
       <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="${css}"></head>
-      <body class="doctor"><header><h1>${escapeHtml(t('Diagnostics'))}</h1><p>${escapeHtml(t('Checks everything Claude Switch needs and fixes what it can.'))}</p></header>${body}${script}</body></html>`;
+      <body class="doctor"><header><h1>${escapeHtml(t('Diagnostics'))}</h1><p>${escapeHtml(t('Checks everything Claude Hub needs and fixes what it can.'))}</p></header>${body}${script}</body></html>`;
   }
 }
 
