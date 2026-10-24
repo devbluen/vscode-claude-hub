@@ -1,0 +1,212 @@
+{
+  "name": "claude-switch",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.1.0",
+  "publisher": "devbluen",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "l10n": "./l10n",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "claude",
+    "claude code",
+    "account",
+    "switch",
+    "usage"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claudeSwitch",
+          "title": "Claude Switch",
+          "icon": "media/activity.svg"
+        }
+      ]
+    },
+    "views": {
+      "claudeSwitch": [
+        {
+          "type": "webview",
+          "id": "claudeSwitch.accounts",
+          "name": "%view.accounts%"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "claudeSwitch.switch",
+        "title": "%command.switch%",
+        "category": "Claude Switch",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "claudeSwitch.addAccount",
+        "title": "%command.addAccount%",
+        "category": "Claude Switch",
+        "icon": "$(person-add)"
+      },
+      {
+        "command": "claudeSwitch.saveCurrent",
+        "title": "%command.saveCurrent%",
+        "category": "Claude Switch",
+        "icon": "$(save)"
+      },
+      {
+        "command": "claudeSwitch.undo",
+        "title": "%command.undo%",
+        "category": "Claude Switch",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "claudeSwitch.refreshUsage",
+        "title": "%command.refreshUsage%",
+        "category": "Claude Switch",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "claudeSwitch.suggest",
+        "title": "%command.suggest%",
+        "category": "Claude Switch",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "claudeSwitch.openAnalytics",
+        "title": "%command.openAnalytics%",
+        "category": "Claude Switch",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "claudeSwitch.doctor",
+        "title": "%command.doctor%",
+        "category": "Claude Switch",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "claudeSwitch.reloadWindow",
+        "title": "%command.reloadWindow%",
+        "category": "Claude Switch"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "claudeSwitch.addAccount",
+          "when": "view == claudeSwitch.accounts",
+          "group": "navigation@1"
+        },
+        {
+          "command": "claudeSwitch.openAnalytics",
+          "when": "view == claudeSwitch.accounts",
+          "group": "navigation@2"
+        },
+        {
+          "command": "claudeSwitch.refreshUsage",
+          "when": "view == claudeSwitch.accounts",
+          "group": "navigation@3"
+        },
+        {
+          "command": "claudeSwitch.suggest",
+          "when": "view == claudeSwitch.accounts",
+          "group": "more@1"
+        },
+        {
+          "command": "claudeSwitch.saveCurrent",
+          "when": "view == claudeSwitch.accounts",
+          "group": "more@2"
+        },
+        {
+          "command": "claudeSwitch.undo",
+          "when": "view == claudeSwitch.accounts",
+          "group": "more@3"
+        },
+        {
+          "command": "claudeSwitch.doctor",
+          "when": "view == claudeSwitch.accounts",
+          "group": "more@4"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Claude Switch",
+      "properties": {
+        "claudeSwitch.afterSwitch": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "reload",
+            "nothing"
+          ],
+          "enumDescriptions": [
+            "%config.afterSwitch.ask%",
+            "%config.afterSwitch.reload%",
+            "%config.afterSwitch.nothing%"
+          ],
+          "default": "ask",
+          "description": "%config.afterSwitch%"
+        },
+        "claudeSwitch.showUsage": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.showUsage%"
+        },
+        "claudeSwitch.usageRefreshMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "description": "%config.usageRefreshMinutes%"
+        },
+        "claudeSwitch.refreshInactiveTokens": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.refreshInactiveTokens%"
+        },
+        "claudeSwitch.warnAtPercent": {
+          "type": "number",
+          "default": 90,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "%config.warnAtPercent%"
+        },
+        "claudeSwitch.notifyWhenAvailable": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.notifyWhenAvailable%"
+        },
+        "claudeSwitch.statusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.statusBar%"
+        },
+        "claudeSwitch.cliPath": {
+          "type": "string",
+          "default": "",
+          "description": "%config.cliPath%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "icon": "node scripts/make-icon.js",
+    "check-l10n": "node scripts/check-l10n.js",
+    "package": "npm run compile && npm run check-l10n && vsce package --no-dependencies --no-rewrite-relative-links"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.0",
+    "typescript": "^5.5.0"
+  }
+}
