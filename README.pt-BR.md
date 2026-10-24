@@ -4,6 +4,8 @@
 
 Troque entre contas do Claude Code no VS Code com um clique, sem sair e entrar de novo.
 
+![Claude Switch: painel de contas e métricas de uso](docs/screenshots/pt-BR/hero.png)
+
 - **Painel de contas** na barra lateral: um cartão por conta com cor, plano (Pro / Max) e todos os limites de uso — sessão de 5 horas, semanal e limites por modelo, como **Fable** ou Opus.
 - **Barra de status** com a conta ativa e o uso de 5 horas (fica amarela/vermelha perto do limite). Clique para trocar.
 - **Métricas de uso**: uso ao longo do tempo por conta, consumo no período, vezes no limite, tempo bloqueada, disponibilidade nos próximos 7 dias e uso semanal por produto.
@@ -13,6 +15,22 @@ Troque entre contas do Claude Code no VS Code com um clique, sem sair e entrar d
 - **Diagnóstico** que verifica tudo e corrige problemas com um clique (CLI não encontrado, PATH, conflitos, logins expirados).
 - **Inglês e português** (segue o idioma do VS Code).
 - **Sem dependências em runtime**, sem telemetria, sem propaganda. Acesso à rede só para `api.anthropic.com` (uso) e `platform.claude.com` (renovação de token) — os dois podem ser desligados.
+
+## Screenshots
+
+| Contas | Tema claro | Menu do card |
+| :---: | :---: | :---: |
+| ![Painel de contas](docs/screenshots/pt-BR/accounts.png) | ![Painel de contas, tema claro](docs/screenshots/pt-BR/accounts-light.png) | ![Menu do card com seletor de cor](docs/screenshots/pt-BR/menu.png) |
+
+**Métricas de uso** — uso ao longo do tempo, consumo, disponibilidade e uso por produto:
+
+![Métricas de uso](docs/screenshots/pt-BR/analytics.png)
+
+**Diagnóstico** — verifica tudo e corrige problemas com um clique:
+
+![Diagnóstico](docs/screenshots/pt-BR/diagnostics.png)
+
+<sub>As screenshots usam contas fictícias. Gere de novo com `npm run screenshots`.</sub>
 
 ## Como funciona
 

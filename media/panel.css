@@ -151,7 +151,8 @@ select {
 .fill { height: 100%; border-radius: 999px; background: var(--c); transition: width .6s cubic-bezier(.2,.8,.2,1); }
 .fill.warn { background: var(--warn); }
 .fill.bad { background: var(--bad); }
-.acc-foot { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 11px; }
+.acc-foot { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; }
+.acc-foot .btn { margin-left: auto; }
 
 /* chart */
 .chart-wrap { position: relative; }

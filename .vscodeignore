@@ -6,3 +6,4 @@ out/**/*.map
 tsconfig.json
 *.vsix
 .gitignore
+docs/**

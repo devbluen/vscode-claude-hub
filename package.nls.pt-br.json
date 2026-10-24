@@ -1,5 +1,5 @@
 {
-  "displayName": "Claude Switch",
+  "displayName": "Claude Account Hub",
   "description": "Troque entre contas do Claude Code com um clique, com limites de uso, métricas e notificações.",
   "view.accounts": "Contas",
   "command.switch": "Trocar conta",

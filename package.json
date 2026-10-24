@@ -1,10 +1,18 @@
 {
-  "name": "claude-switch",
+  "name": "vscode-claude-switch",
   "displayName": "%displayName%",
   "description": "%description%",
   "version": "1.1.0",
   "publisher": "devbluen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devbluen/vscode-claude-switch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devbluen/vscode-claude-switch/issues"
+  },
+  "homepage": "https://github.com/devbluen/vscode-claude-switch#readme",
   "icon": "media/icon.png",
   "l10n": "./l10n",
   "engines": {
@@ -201,7 +209,8 @@
     "watch": "tsc -watch -p ./",
     "icon": "node scripts/make-icon.js",
     "check-l10n": "node scripts/check-l10n.js",
-    "package": "npm run compile && npm run check-l10n && vsce package --no-dependencies --no-rewrite-relative-links"
+    "package": "npm run compile && npm run check-l10n && vsce package --no-dependencies",
+    "screenshots": "npm run compile && node scripts/screenshots/generate.js"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
