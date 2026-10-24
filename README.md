@@ -118,7 +118,7 @@ npm install
 npm run compile      # builds into out/
 npm run check-l10n   # every string translated?
 npm run package      # creates claude-switch-x.y.z.vsix
-code --install-extension claude-switch-1.1.0.vsix
+code --install-extension claude-hub-accounts-1.1.0.vsix
 ```
 
 Press `F5` in VS Code to open a test window with the extension.

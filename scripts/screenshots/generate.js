@@ -147,7 +147,7 @@ async function doctorPage(manager, lang, theme) {
   claudeFiles.usesKeychain = () => false;
   api.fetchUsage = async () => ({ fetchedAt: Date.now(), windows: [] });
 
-  DoctorPanel.show({ extensionUri: { fsPath: root } }, { profiles: manager.profiles, unsaved: undefined });
+  DoctorPanel.show({ extensionUri: { fsPath: root }, extension: { id: 'devbluen.claude-hub-accounts' } }, { profiles: manager.profiles, unsaved: undefined });
   for (let i = 0; i < 100 && /class="loading"/.test(stub.getCapturedHtml()); i++) {
     await new Promise((r) => setTimeout(r, 20));
   }

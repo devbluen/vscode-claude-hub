@@ -182,10 +182,10 @@ async function loginChecks(manager: AccountManager): Promise<Check[]> {
   return checks;
 }
 
-function environmentChecks(): Check[] {
+function environmentChecks(selfId: string): Check[] {
   const checks: Check[] = [];
   const conflicts = vscode.extensions.all.filter(
-    (e) => e.id !== 'devbluen.claude-switch' && KNOWN_CONFLICTS.some((k) => e.id.toLowerCase().includes(k)),
+    (e) => e.id.toLowerCase() !== selfId.toLowerCase() && KNOWN_CONFLICTS.some((k) => e.id.toLowerCase().includes(k)),
   );
   for (const ext of conflicts) {
     checks.push({
@@ -376,7 +376,7 @@ export class DoctorPanel {
     const checks = [
       ...(await cliChecks()),
       ...(await loginChecks(this.manager)),
-      ...environmentChecks(),
+      ...environmentChecks(this.context.extension?.id ?? ''),
     ];
     const problems = checks.filter((c) => c.status === 'error' || c.status === 'warn').length;
     const summary = problems
